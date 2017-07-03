@@ -41,10 +41,9 @@ def reply(request, post_id):
         reply = form.save(commit=False)
         reply.author = request.user
         reply.post = post
-        print(reply.save())
+        reply.save()
         messages.info(request, '帖子《{}》回复成功'.format(post.title))
     else:
-        print('not valid')
-        messages.warning(request, '帖子《{}》回复失败')
+        messages.warning(request, '帖子《{}》回复失败'.format(post.title))
 
     return redirect('post', post.id)
